@@ -22,7 +22,11 @@ end
 
 gem 'jquery-rails'
 gem "paperclip", "~> 3.0"
+gem "nokogiri"
 
+group :development do
+  gem 'pry'
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

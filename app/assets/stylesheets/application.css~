@@ -13,5 +13,6 @@
  */
  
 #carousel {
+  display: block;
   margin: auto;  
 }

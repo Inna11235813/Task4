@@ -30,7 +30,7 @@ class ImagesController < ApplicationController
   def create
     doc = Nokogiri::HTML(open('http://oboobs.ru'))
     images_html = doc.css('.dimage img')
-    images_html.first(5).each do |image_html|
+    images_html.each do |image_html|
       url = image_html.attributes['src'].value
       image = Image.new
       image.picture_from_url url

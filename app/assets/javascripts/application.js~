@@ -17,8 +17,8 @@ $(document).ready(function(){
 $("#carousel").CloudCarousel({
   xPos:128,
   yPos:32,
-  buttonLeft:$("#left-btn"),
-  buttonRight:$("#right-btn"),
+  buttonLeft:$("#left-but"),
+  buttonRight:$("#right-but"),
   altBox:$("#alt-text"),
   titleBox:$("#title-text")
 });
