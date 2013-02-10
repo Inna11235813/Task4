@@ -12,6 +12,9 @@
   <input type="button" id="right-btn" value="Right"/>
 </div>
 
+<p id="title-text"></p>
+<p id="alt-text"></p>
+
 <%= form_for(Image.new) do |f| %>
   <div class="actions">
     <%= f.submit 'ЕЩЕ СИСЕК' %>

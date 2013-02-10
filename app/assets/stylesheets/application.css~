@@ -24,7 +24,7 @@
 
 .buttons {
   margin: auto;
-  width: 160px;
+  width: 200px;
   margin-top: 20px;
 }
 

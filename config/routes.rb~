@@ -1,5 +1,6 @@
 Task4::Application.routes.draw do
-  resources :users
+  resources :images, :only => [:action, :create]
+  root :to => 'images#index'
 
 
   # The priority is based upon order of creation:
