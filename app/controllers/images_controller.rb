@@ -10,8 +10,9 @@ class ImagesController < ApplicationController
 
   # POST /images
   # POST /images.json
-  def create
-    doc = Nokogiri::HTML(open('http://oboobs.ru'))
+ 
+ def create
+   doc = Nokogiri::HTML(open('http://oboobs.ru'))
     images_html = doc.css('.dimage img')
     images_html.first(5).each do |image_html|
       url = image_html.attributes['src'].value
@@ -19,7 +20,48 @@ class ImagesController < ApplicationController
       image.picture_from_url url
       image.save
     end
+=begin
+ def create
+ ranks = text.scan (%r{<dev id = "divrank[\d]{4}">(.*)</div>}).flatten
+ links = text.scan(%r{img src="(.*)?" alt = ".*obbobs.ru.*\/>"}).flatten
+ for i in 0..5
+ image = Magic::Image.read(links[i].first)
+ title= Draw.new
+ title.annotate(image,0,0,0,30,ranks[i])
+ {
+  self.fill='white'
+  self.stroke = 'transparent'
+  self.pointsize = 24
+  self.font_weight = Boldweight
+  self.gravity = SouthGravity
+ }
+ image.write("app/assets/images/#{i}.ipg")
+=end
+=begin
+  doc = Nokogiri::HTML(open('http://oboobs.ru'))
+    images_html = doc.css(' .dimage img')
+    images_html.first(5).each do |image_html|
+    url = image_html.attributes['src'].value
+    ranks = text.scan (%r{<dev id = "divrank[\d]{4}">(.*)</div>}).flatten
+ links = text.scan(%r{img src="(.*)?" alt = ".*obbobs.ru.*\/>"}).flatten
+ for i in 0..5
+ image = Magic::Image.read(links[i].first)
+ title= Draw.new
+ title.annotate(image,0,0,0,30,ranks[i])
+ {
+  self.fill='white'
+  self.stroke = 'transparent'
+  self.pointsize = 24
+  self.font_weight = Boldweight
+  self.gravity = SouthGravity
+ }
     
+    image = Image.new
+    image.picture_from_url url
+    image.save
+    end
+=end
+     
     redirect_to images_url
   end
 end
