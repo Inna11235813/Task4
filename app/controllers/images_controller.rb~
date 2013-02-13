@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'RMagic'
 
 class ImagesController < ApplicationController
   # GET /images
@@ -10,16 +11,19 @@ class ImagesController < ApplicationController
 
   # POST /images
   # POST /images.json
- 
- # def create
-  #  doc = Nokogiri::HTML(open('http://oboobs.ru'))
-   # images_html = doc.css('.dimage img')
-    #images_html.first(5).each do |image_html|
-     # url = image_html.attributes['src'].value
-      #image = Image.new
-      #image.picture_from_url url
-      #image.save
-    #end
+=begin
+ def create
+   doc = Nokogiri::HTML(open('http://oboobs.ru'))
+    images_html = doc.css('.dimage img')
+    images_html.first(5).each do |image_html|
+      url = image_html.attributes['src'].value
+      image = Image.new
+      image.picture_from_url url
+      image.save
+    end
+=end    
+    
+    
 =begin
  def create
  ranks = text.scan (%r{<dev id = "divrank[\d]{4}">(.*)</div>}).flatten
@@ -37,13 +41,15 @@ class ImagesController < ApplicationController
  }
  image.write("app/assets/images/#{i}.ipg")
 =end
-=begin
+
   doc = Nokogiri::HTML(open('http://oboobs.ru'))
     images_html = doc.css(' .dimage img')
     images_html.first(5).each do |image_html|
     url = image_html.attributes['src'].value
-    ranks = text.scan (%r{<dev id = "divrank[\d]{4}">(.*)</div>}).flatten
- links = text.scan(%r{img src="(.*)?" alt = ".*obbobs.ru.*\/>"}).flatten
+    
+    text = doc.read
+      ranks = text.scan (%r{<dev id = "divrank[\d]{4}">(.*)</div>}).flatten
+
  for i in 0..5
  image = Magic::Image.read(links[i].first)
  title= Draw.new
@@ -60,7 +66,7 @@ class ImagesController < ApplicationController
     image.picture_from_url url
     image.save
     end
-=end
+
      
     redirect_to images_url
   end
